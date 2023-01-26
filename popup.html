@@ -1,0 +1,105 @@
+<!-- Assignment - 
+    Make a chrome extension where while visiting any site you can mark some text as note and download all notes later through button
+    Brownie points: it would be great if you can highlight that text and after reloading it stays on page 
+-->
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Note-taking Extension</title>
+    <link rel="stylesheet" type="text/css" href="CSS/popup.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" rel="stylesheet" />
+
+</head>
+
+<body>
+    <!-- ===== Home Section ===== -->
+    <div id="home-section">
+
+        <div class="header">
+            <h2 class="title">Your Notes</h2>
+            <div class="header-right">
+                <label class="switch" title="on/off">
+                    <input id="main-switch" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+                <button id="open-about" title="Info and More">
+                    <i class="fa-sharp fa-solid fa-info"></i>
+                </button>
+            </div>
+        </div>
+        <div id="empty-list-message" style="display: none;">
+            Nothing to show! Add new notes
+        </div>
+
+
+        <div id="container">
+            <!-- Notes will appear here -->
+            <div id="note-list">
+            </div>
+
+            <div class="footer">
+                <div class="footer-text">NoteSnap</div>
+
+                <div class="buttons">
+                    <button type="button" id="delete-all-notes" class="btn" title="Delete All">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                    <button type="button" id="download-notes-csv" class="btn" title="Download (CSV)">
+                        <i class="fa-solid fa-file-excel"></i>
+                    </button>
+                    <button type="button" id="download-notes-text" class="btn" title="Download (Text)">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== About Section ===== -->
+    <div id="about-section" style="display: none;">
+        <div class="header">
+            <h1 class="title">About NoteSnap</h1>
+            <button id="close-about">
+                <i class="fa-sharp fa-solid fa-xmark"></i>
+            </button>
+        </div>
+
+        <div class="container">
+            <p class="info">NoteSnap is the ultimate tool for capturing important information from any webpage. With
+                just one click,
+                you can easily highlight and save any text, making it easy to keep track of important information.
+                Organize your notes by tab, and download them all in one go. Never lose track of important information
+                again with NoteSnap!
+            </p>
+
+            <!-- Creater Name  -->
+            <!-- <div class="createrBox">
+                <h2 class="title">Created By: </h2>
+                <p>Raj Patel</p>
+            </div>
+            <hr> -->
+        </div>
+
+        <div class="footer">
+            <div class="footer-text">All Notes ---></div>
+
+            <div class="buttons">
+                <button type="button" id="clear-all-data" class="btn" title="Clear All Data">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+                <button type="button" id="download-all-notes-csv" class="btn" title="Download All Notes (CSV)">
+                    <i class="fa-solid fa-file-excel"></i>
+                </button>
+                <button type="button" id="download-all-notes-text" class="btn" title="Download All Notes (Text)">
+                    <i class="fa-solid fa-file-lines"></i>
+                </button>
+            </div>
+        </div>
+
+    </div>
+    <script src="Scripts/popup.js"></script>
+</body>
+
+</html>
