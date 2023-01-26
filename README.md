@@ -14,11 +14,17 @@ information. Organize your notes by sites, and download them all in one go.
 
 # Screenshots
 
-![At starting there is no saved notes](/IMG/Screenshots/3.jpg);
-![By clicking '+' icon you can save text as a note](/IMG/Screenshots/1.jpg)
-![So this is how notes will look like, you can copy, delete or download this notes](/IMG/Screenshots/2.jpg);
-![You can delete or download all data by using buttons given in this page](/IMG/Screenshots/4.jpg);
+<p>At starting, Notes are empty. You can turn on/off extension by toggle button given here</p>
+<img src="/IMG/Screenshots/3.jpg" alt="Screenshot">
 
+<p>By clicking '+' icon you can save text as a note</p>
+<img src="/IMG/Screenshots/1.jpg" alt="Screenshot">
+
+<p>So this is how notes will look like, you can copy, delete or download this notes</p>
+<img src="/IMG/Screenshots/2.jpg" alt="Screenshot">
+
+<p>You can delete or download all data by using buttons given in this page</p>
+<img src="/IMG/Screenshots/4.jpg" alt="Screenshot">
 
 # How to install 
 
