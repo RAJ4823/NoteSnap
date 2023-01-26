@@ -3,7 +3,7 @@ It is a Chrome-Extension for capturing important information from any webpage. W
 
 # How to install 
 
-- Clone this repository
+- Clone/Download this repository
 - Follow the instructions mentioned [here](https://developer.chrome.com/docs/extensions/mv3/getstarted/#manifest)
 
 # Authors
