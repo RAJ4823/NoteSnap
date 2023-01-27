@@ -1,4 +1,4 @@
-# NoteSnap
+# NoteSnap <img style="display:inline;" src="/IMG/icon.png" alt="icon">
 It is a Chrome Extension for taking note of important details on any website. You can quickly highlight and save any text with just one click, making it easy to keep track of important
 information. Organize your notes by sites, and download them all in one go. 
 
