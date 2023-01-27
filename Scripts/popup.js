@@ -1,7 +1,7 @@
 // Elements
 const emptyListMessage = document.getElementById("empty-list-message");
 const messageBox = document.getElementsByClassName("footer-text");
-const aboutSection = document.getElementById("about-section");
+const settingSection = document.getElementById("setting-section");
 const homeSection = document.getElementById("home-section");
 const container = document.getElementById("container");
 const noteList = document.getElementById("note-list");
@@ -13,18 +13,14 @@ const downloadNotesAsTextButton = document.getElementById("download-notes-text")
 const downloadNotesAsCSVButton = document.getElementById("download-notes-csv");
 const clearAllDataButton = document.getElementById("clear-all-data");
 const deleteAllButton = document.getElementById("delete-all-notes");
-const closeAboutButton = document.getElementById("close-about");
-const openAboutButton = document.getElementById("open-about");
+const highlighterSwitch = document.getElementById("highlighter");
+const closeSettingButton = document.getElementById("close-setting");
+const openSettingButton = document.getElementById("open-setting");
 const mainSwitch = document.getElementById('main-switch');
 
-// For opening and closing about/more section
-openAboutButton.addEventListener("click", toggleAboutSection);
-closeAboutButton.addEventListener("click", toggleAboutSection);
-
-// For downloading or deleting notes of all sites
-downloadAllNotesAsTextButton.addEventListener("click", () => downloadAllNotes('plain'));
-downloadAllNotesAsCSVButton.addEventListener("click", () => downloadAllNotes('csv'));
-clearAllDataButton.addEventListener("click", () => clearAllData());
+// For opening and closing setting/more section
+openSettingButton.addEventListener("click", toggleSettingSection);
+closeSettingButton.addEventListener("click", toggleSettingSection);
 
 // Setting status of switch when its changes
 mainSwitch.addEventListener('change', function () {
@@ -32,9 +28,10 @@ mainSwitch.addEventListener('change', function () {
     showBadgeText(mainSwitch.checked);
 });
 
-// Getting status of switch and updating it
-chrome.storage.sync.get({ 'status': true }, function (res) {
+// Getting previous value of switches and updating it
+chrome.storage.sync.get({ 'status': true, 'highlight': false }, function (res) {
     mainSwitch.checked = res.status;
+    highlighterSwitch.checked = res.highlight;
     showBadgeText(mainSwitch.checked);
 })
 
@@ -56,6 +53,21 @@ chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
     deleteAllButton.addEventListener("click", () => deleteAllNotes(tabId));
 });
 
+// Setting Page's functionality
+// For downloading or deleting notes of all sites
+downloadAllNotesAsTextButton.addEventListener("click", () => downloadAllNotes('plain'));
+downloadAllNotesAsCSVButton.addEventListener("click", () => downloadAllNotes('csv'));
+clearAllDataButton.addEventListener("click", () => clearAllData());
+
+// For highlighting text
+highlighterSwitch.addEventListener("change", function () {
+    let switchStatus = highlighterSwitch.checked;
+    chrome.storage.sync.set({ 'highlight': switchStatus });
+    let message = (switchStatus) ? "ON" : "OFF";
+    displayMessage("Highlighter - " + message, 1);
+});
+
+
 function showAllNotes(all_notes, tabId) {
     let notes = all_notes[tabId] || [];
 
@@ -65,8 +77,9 @@ function showAllNotes(all_notes, tabId) {
         return;
     }
 
-    // Create notediv element for each notes and display it
-    notes.forEach(function (note, index) {
+    // Create notediv element for each notes and display it by recent added order
+    for (let index = notes.length - 1; index >= 0; --index) {
+        let note = notes[index];
         let noteDiv = document.createElement("div");        // Note Block
         let noteText = document.createElement("p");         // Note-text content block
         let deleteBtn = document.createElement("button");   // Note-delete button
@@ -95,7 +108,7 @@ function showAllNotes(all_notes, tabId) {
         noteDiv.appendChild(noteText);
         noteDiv.appendChild(deleteBtn);
         noteList.appendChild(noteDiv);
-    });
+    };
 }
 
 function downloadNotes(tabId, format) {
@@ -116,6 +129,7 @@ function downloadNotes(tabId, format) {
 
         let notesData = { 'plain': notesText, 'csv': notesCSV };
         download(notesData, format, tabId);
+        displayMessage("Downloaded");
     });
 }
 
@@ -147,6 +161,7 @@ function downloadAllNotes(format) {
 
         let notesData = { 'plain': notesText, 'csv': notesCSV };
         download(notesData, format, 'ALL');
+        displayMessage("Downloaded", 3);
     });
 }
 
@@ -161,10 +176,11 @@ function download(notesData, format, fileName) {
     document.body.appendChild(downloadLink);
     downloadLink.click();
     document.body.removeChild(downloadLink);
-    displayMessage("Downloaded");
 }
 
 function deleteAllNotes(tabId) {
+    let _confirm = confirm("It will delete all notes of this site, Are you sure?");
+    if (!_confirm) return;
     chrome.storage.sync.get({ 'all_notes': {} }, function (result) {
         let all_notes = result.all_notes;
         delete all_notes[tabId];
@@ -175,9 +191,11 @@ function deleteAllNotes(tabId) {
 }
 
 function clearAllData() {
+    let _confirm = confirm("It will clear all data, Are you sure?");
+    if (!_confirm) return;
     // Set empty object for 'all_notes'
     chrome.storage.sync.set({ 'all_notes': {} });
-    displayMessage("Cleared");
+    displayMessage("Cleared", 2);
     showEmptyNotesMessage();
 }
 
@@ -202,12 +220,12 @@ function showBadgeText(status) {
     }
 }
 
-function toggleAboutSection() {
-    if (aboutSection.style.display === "block") {
-        aboutSection.style.display = "none";
+function toggleSettingSection() {
+    if (settingSection.style.display === "block") {
+        settingSection.style.display = "none";
         homeSection.style.display = "block";
     } else {
-        aboutSection.style.display = "block";
+        settingSection.style.display = "block";
         homeSection.style.display = "none";
     }
 }
@@ -219,12 +237,17 @@ function showEmptyNotesMessage() {
 
 // Fun Elements
 messageBox[0].addEventListener('click', () => displayMessage("Hey!"));
-function displayMessage(msg) {
-    messageBox[0].innerHTML = msg;  // Home's messageBox
-    messageBox[1].innerHTML = msg;  // About's messageBox
+function displayMessage(msg, index = 0) {
+    let originalMessage = [
+        "NoteSnap",
+        "Highlighter (Beta)",
+        "Clear All Data",
+        "Download All Data"
+    ];
+
+    messageBox[index].innerHTML = msg;
     // Remove the message element after 2 seconds
     setTimeout(() => {
-        messageBox[0].innerHTML = 'NoteSnap';
-        messageBox[1].innerHTML = 'All Notes -->';
+        messageBox[index].innerHTML = originalMessage[index];
     }, 600);
 }
