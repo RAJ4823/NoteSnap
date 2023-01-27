@@ -23,7 +23,7 @@ information. Organize your notes by sites, and download them all in one go.
 <p>So this is how notes will look like, you can copy, delete or download this notes</p>
 <img src="/IMG/Screenshots/2.jpg" alt="Screenshot">
 
-<p>You can delete or download all data by using buttons given in this page</p>
+<p>In settings you can delete or download all the data. Currently, Highlighter is in beta stage</p>
 <img src="/IMG/Screenshots/4.jpg" alt="Screenshot">
 
 # How to install 

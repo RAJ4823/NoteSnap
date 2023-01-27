@@ -53,7 +53,8 @@ body {
 }
 
 .header i {
-    font-size: 16px;
+    font-size: 14px;
+    padding: 1px 0px 0px 1px;
 }
 
 /* ===== Home Section ===== */
@@ -75,7 +76,7 @@ body {
     display: inline-block;
     width: 40px;
     height: 20.5px;
-    margin: 0px 10px;
+    margin: 0px 7px;
 }
 
 .switch input {
@@ -271,13 +272,13 @@ input:checked+.slider:before {
 }
 
 /* ===== About section ===== */
-#about-section .container {
+#setting-section .container {
     cursor: default;
     font-family: monospace;
     margin: 5px;
 }
 
-#about-section .info {
+#setting-section .info {
     color: var(--color4);
     font-weight: bold;
     border: 2px dashed var(--color2);
@@ -285,6 +286,24 @@ input:checked+.slider:before {
     font-size: 0.9rem;
     padding: 10px;
     text-align: justify;
+}
+
+.settings {
+    margin: 5px;
+    padding: 5px 5px 5px 0px;
+    border: 2px dashed var(--color2);
+    border-radius: 5px;
+}
+
+.options {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 45px;
+}
+
+.options .footer-text {
+    font-size: 1.1rem !important;
 }
 
 .createrBox {
@@ -302,7 +321,8 @@ input:checked+.slider:before {
 }
 
 hr {
+    width: 90%;
     color: var(--color3);
-    border: 1px solid var(--color3);
-    margin: 10px 0px;
+    border: 1px dashed var(--color3);
+    margin: 10px auto;
 }

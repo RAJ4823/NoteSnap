@@ -23,8 +23,8 @@
                     <input id="main-switch" type="checkbox">
                     <span class="slider round"></span>
                 </label>
-                <button id="open-about" title="Info and More">
-                    <i class="fa-sharp fa-solid fa-info"></i>
+                <button id="open-setting" title="Info and More">
+                    <i class="fa-sharp fa-solid fa-gear"></i>
                 </button>
             </div>
         </div>
@@ -57,20 +57,54 @@
         </div>
     </div>
 
-    <!-- ===== About Section ===== -->
-    <div id="about-section" style="display: none;">
+    <!-- ===== setting Section ===== -->
+    <div id="setting-section" style="display: none;">
         <div class="header">
-            <h1 class="title">About NoteSnap</h1>
-            <button id="close-about">
+            <h1 class="title">Setting</h1>
+            <button id="close-setting">
                 <i class="fa-sharp fa-solid fa-xmark"></i>
             </button>
         </div>
 
+        <div class="settings">
+            <div class="options">
+                <p class="footer-text">Highlighter (Beta)</p>
+                <label class="switch" title="on/off">
+                    <input id="highlighter" type="checkbox">
+                    <span class="slider round"></span>
+                </label>
+            </div>
+
+            <!-- <hr> -->
+            <div class="options">
+                <p class="footer-text">Clear All Data</p>
+                <div class="buttons">
+                    <button type="button" id="clear-all-data" class="btn" title="Clear All Data">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- <hr> -->
+            <div class="options">
+                <p class="footer-text">Download All Data</p>
+                <div class="buttons">
+                    <button type="button" id="download-all-notes-csv" class="btn" title="Download All Notes (CSV)">
+                        <i class="fa-solid fa-file-excel"></i>
+                    </button>
+                    <button type="button" id="download-all-notes-text" class="btn" title="Download All Notes (Text)">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="header">
+            <h1 class="title">About</h1>
+        </div>
         <div class="container">
             <p class="info">It is a Chrome Extension for taking note of important details on any website. You can
-                quickly highlight and save any text with just one click, making it easy to keep track of important
-                information. Organize your notes by sites, and download them all in one go. 
-                <br><br>
+                quickly highlight and save any text with just one click.
                 With NoteSnap, you'll never lose important information again.
             </p>
 
@@ -80,22 +114,6 @@
                 <p>Raj Patel</p>
             </div>
             <hr> -->
-        </div>
-
-        <div class="footer">
-            <div class="footer-text">All Notes ---></div>
-
-            <div class="buttons">
-                <button type="button" id="clear-all-data" class="btn" title="Clear All Data">
-                    <i class="fa-solid fa-trash"></i>
-                </button>
-                <button type="button" id="download-all-notes-csv" class="btn" title="Download All Notes (CSV)">
-                    <i class="fa-solid fa-file-excel"></i>
-                </button>
-                <button type="button" id="download-all-notes-text" class="btn" title="Download All Notes (Text)">
-                    <i class="fa-solid fa-file-lines"></i>
-                </button>
-            </div>
         </div>
 
     </div>
